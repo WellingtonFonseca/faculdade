@@ -9,11 +9,12 @@ import model.PessoaJuridica;
 import model.PessoaFisicaRepo;
 import model.PessoaJuridicaRepo;
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
  *
  * @author wellingtonfonseca
  */
-public class CadastroPOO {
+public class CadastroPOO1 {
 
     /**
      * @param args the command line arguments
@@ -58,13 +59,13 @@ public class CadastroPOO {
             
             System.out.println("pessoas_fisicas: persistindo");
             
-            repo3.persistir("pessoas_juridicas.dat");
+            repo3.persistir("pessoas_juridicas.bin");
 
             PessoaJuridicaRepo repo4 = new PessoaJuridicaRepo();
                
             System.out.println("pessoas_fisicas: recuperando");
             
-            repo4.recuperar("pessoas_juridicas.dat");
+            repo4.recuperar("pessoas_juridicas.bin");
             
             ArrayList<PessoaJuridica> pessoasJuridicasRecuperadas = repo4.obterTodos();
             
@@ -77,6 +78,5 @@ public class CadastroPOO {
         } catch (ClassNotFoundException ex) {
             System.err.println("Erro ao recuperar objeto: Classe não encontrada.");
         }
-    }
-    
+    }   
 }

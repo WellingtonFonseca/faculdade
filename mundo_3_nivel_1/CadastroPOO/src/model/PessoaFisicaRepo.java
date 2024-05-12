@@ -16,15 +16,19 @@ public class PessoaFisicaRepo implements Serializable {
         pessoasFisicas.add(pessoaFisica);
     }
 
-    public void alterar(PessoaFisica pessoaFisica) {}
-
-    public void excluir(int id) {
-        for (PessoaFisica pessoa : pessoasFisicas) {
-            if (pessoa.getId() == id) {
-                pessoasFisicas.remove(pessoa);
-                break;
+    public void alterar(PessoaFisica pessoa) {
+        for (int i = 0; i < pessoasFisicas.size(); i++) {
+            PessoaFisica p = pessoasFisicas.get(i);
+            if (p.getId() == pessoa.getId()) {
+                pessoasFisicas.set(i, pessoa);
+                return;
             }
         }
+        throw new IllegalArgumentException("Pessoa não encontrada para alteração.");
+    }
+
+    public void excluir(int id) {
+        pessoasFisicas.removeIf(pessoa -> pessoa.getId() == id);
     }
 
     public PessoaFisica obter(int id) {
@@ -33,7 +37,7 @@ public class PessoaFisicaRepo implements Serializable {
                 return pessoa;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Pessoa não encontrada.");
     }
 
     public ArrayList<PessoaFisica> obterTodos() {

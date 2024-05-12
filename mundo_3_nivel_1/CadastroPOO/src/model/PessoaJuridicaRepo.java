@@ -16,24 +16,28 @@ public class PessoaJuridicaRepo implements Serializable {
         pessoasJuridicas.add(pessoaJuridica);
     }
 
-    public void alterar(PessoaJuridica pessoaJuridica) {}
-
-    public void excluir(int id) {
-        for (PessoaJuridica pessoa : pessoasJuridicas) {
-            if (pessoa.getId() == id) {
-                pessoasJuridicas.remove(pessoa);
-                break;
+    public void alterar(PessoaJuridica pessoaJuridica) {
+        for (int i = 0; i < pessoasJuridicas.size(); i++) {
+            PessoaJuridica p = pessoasJuridicas.get(i);
+            if (p.getId() == pessoaJuridica.getId()) {
+                pessoasJuridicas.set(i, pessoaJuridica);
+                return;
             }
         }
+        throw new IllegalArgumentException("Pessoa jurídica não encontrada para alteração.");
+    }
+
+    public void excluir(int id) {
+        pessoasJuridicas.removeIf(pessoaJuridica -> pessoaJuridica.getId() == id);
     }
 
     public PessoaJuridica obter(int id) {
-        for (PessoaJuridica pessoa : pessoasJuridicas) {
-            if (pessoa.getId() == id) {
-                return pessoa;
+        for (PessoaJuridica pessoaJuridica : pessoasJuridicas) {
+            if (pessoaJuridica.getId() == id) {
+                return pessoaJuridica;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Pessoa jurídica não encontrada.");
     }
 
     public ArrayList<PessoaJuridica> obterTodos() {
