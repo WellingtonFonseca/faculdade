@@ -1,6 +1,9 @@
 Aluno: Wellington Cesar Fonseca
+
 Curso: 7124 - DESENVOLVIMENTO FULL STACK
+
 Currículo: 7222
+
 Mês/Ano de ingresso: 04/2023
 
 # Material de orientações para desenvolvimento da missão prática do 1º nível de conhecimento.
