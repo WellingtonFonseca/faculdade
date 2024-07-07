@@ -8,7 +8,7 @@ package cadastrobd.model;
  *
  * @author wellingtonfonseca
  */
-public class CadastroBDTeste {
+public class CadastroBDTeste1 {
     public static void main(String[] args) {
         PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
         

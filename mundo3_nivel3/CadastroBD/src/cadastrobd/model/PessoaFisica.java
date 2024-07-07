@@ -10,6 +10,16 @@ package cadastrobd.model;
  * @author wellingtonfonseca
  */
 public class PessoaFisica extends Pessoa {
+    private String tipo = "pf";
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+    
     private String cpf;
 
     public void setCpf(String cpf) {
@@ -45,6 +55,7 @@ public class PessoaFisica extends Pessoa {
     @Override
     public void exibir() {
         super.exibir();
+        System.out.println("tipo: " + tipo);
         System.out.println("cpf: " + cpf);
     }
 }

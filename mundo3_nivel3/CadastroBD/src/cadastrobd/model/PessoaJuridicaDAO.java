@@ -19,10 +19,10 @@ public class PessoaJuridicaDAO {
     public PessoaJuridica getPessoa(int id) {
         PessoaJuridica pj = null;
         
-        String sql = "select * from pessoa p where p.tipo = 'pj' p.id = ?";
+        String sql = "select * from pessoa p where p.tipo = 'pj' and p.id = ?";
         
         try (Connection conn = ConectorBD.getConnection();
-             PreparedStatement stmt = ConectorBD.getPrepared(conn, sql)) {
+            PreparedStatement stmt = ConectorBD.getPrepared(conn, sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -39,7 +39,7 @@ public class PessoaJuridicaDAO {
             }
             ConectorBD.close(rs);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
         return pj;
     }
@@ -65,7 +65,7 @@ public class PessoaJuridicaDAO {
                 pessoas.add(pj);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
         return pessoas;
     }
@@ -97,10 +97,10 @@ public class PessoaJuridicaDAO {
                 
             } catch (SQLException e) {
                 conn.rollback();
-                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
         
         return pj;
@@ -127,10 +127,10 @@ public class PessoaJuridicaDAO {
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
-                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
     }
 
@@ -147,10 +147,10 @@ public class PessoaJuridicaDAO {
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
-                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
     }
 }

@@ -19,10 +19,10 @@ public class PessoaFisicaDAO {
     public PessoaFisica getPessoa(int id) {
         PessoaFisica pf = null;
         
-        String sql = "select * from pessoa p where p.tipo = 'pf' p.id = ?";
+        String sql = "select * from pessoa p where p.tipo = 'pf' and p.id = ?";
         
         try (Connection conn = ConectorBD.getConnection();
-             PreparedStatement stmt = ConectorBD.getPrepared(conn, sql)) {
+            PreparedStatement stmt = ConectorBD.getPrepared(conn, sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -39,7 +39,7 @@ public class PessoaFisicaDAO {
             }
             ConectorBD.close(rs);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
         return pf;
     }
@@ -65,7 +65,7 @@ public class PessoaFisicaDAO {
                 pessoas.add(pf);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
         return pessoas;
     }
@@ -97,10 +97,10 @@ public class PessoaFisicaDAO {
 
             } catch (SQLException e) {
                 conn.rollback();
-                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
         
         return pf;
@@ -127,10 +127,10 @@ public class PessoaFisicaDAO {
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
-                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
     }
 
@@ -147,10 +147,10 @@ public class PessoaFisicaDAO {
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
-                e.printStackTrace();
+                System.err.println("Erro: " + e.getMessage());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Erro: " + e.getMessage());
         }
     }
 }
