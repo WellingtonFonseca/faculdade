@@ -19,14 +19,14 @@ import java.util.List;
  *
  * @author wellingtonfonseca
  */
-public class CadastroThread extends Thread {
+public class CadastroThread1 extends Thread {
 
-    private final ProdutoJpaController ctrl;
+    private final ProdutoJpaController ctrlProd;
     private final UsuariosJpaController ctrlUsu;
     private final Socket s1;
 
-    public CadastroThread(ProdutoJpaController ctrl, UsuariosJpaController ctrlUsu, Socket s1) {
-        this.ctrl = ctrl;
+    public CadastroThread1(ProdutoJpaController ctrlProd, UsuariosJpaController ctrlUsu, Socket s1) {
+        this.ctrlProd = ctrlProd;
         this.ctrlUsu = ctrlUsu;
         this.s1 = s1;
     }
@@ -40,14 +40,17 @@ public class CadastroThread extends Thread {
 
             Usuarios usuario = ctrlUsu.findUsuario(login, senha);
             if (usuario == null) {
+                System.out.println("Usuário não autenticado");
                 s1.close();
                 return;
             }
+            
+            System.out.println("Usuário autenticado");
 
             while (true) {
                 String command = (String) in.readObject();
                 if ("L".equals(command)) {
-                    List<Produto> produtos = ctrl.findProdutoEntities();
+                    List<Produto> produtos = ctrlProd.findProdutoEntities();
                     out.writeObject(produtos);
                 } else {
                     // Se comando desconhecido, talvez encerrar a conexão

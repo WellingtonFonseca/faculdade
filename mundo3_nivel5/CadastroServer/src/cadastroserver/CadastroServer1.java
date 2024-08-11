@@ -16,14 +16,14 @@ import javax.persistence.Persistence;
  *
  * @author wellingtonfonseca
  */
-public class CadastroServer {
+public class CadastroServer1 {
 
     public static void main(String[] args) {
         // Criação do EntityManagerFactory
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("CadastroServerPU");
 
         // Criação dos controladores
-        ProdutoJpaController ctrl = new ProdutoJpaController(emf);
+        ProdutoJpaController ctrlProd = new ProdutoJpaController(emf);
         UsuariosJpaController ctrlUsu = new UsuariosJpaController(emf);
 
         // Criação do ServerSocket
@@ -34,7 +34,7 @@ public class CadastroServer {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Cliente conectado: " + clientSocket.getInetAddress());
 
-                CadastroThread thread = new CadastroThread(ctrl, ctrlUsu, clientSocket);
+                CadastroThread1 thread = new CadastroThread1(ctrlProd, ctrlUsu, clientSocket);
                 thread.start();
             }
         } catch (IOException e) {

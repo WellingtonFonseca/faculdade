@@ -25,6 +25,31 @@ public class ProdutoJpaController {
         return emf.createEntityManager();
     }
 
+    public Produto findProduto(long id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Produto.class, id);
+        } finally {
+            em.close();
+        }
+    }
+
+    public void edit(Produto produto) throws Exception {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            produto = em.merge(produto);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (findProduto(produto.getId()) == null) {
+                throw new Exception("The produto with id " + produto.getId() + " no longer exists.");
+            }
+            throw ex;
+        } finally {
+            em.close();
+        }
+    }
+
     public List<Produto> findProdutoEntities() {
         EntityManager em = getEntityManager();
         try {
