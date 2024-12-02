@@ -1,13 +1,13 @@
 import React from 'react';
+import CadastroForm from '../src/screens/CadastroForm';
 import { SupplierProvider } from '../src/context/SupplierContext';
-import SupplierList from '../src/screens/SupplierList';
 
-const Index = () => {
+const Cadastro = () => {
   return (
     <SupplierProvider>
-      <SupplierList />
+      <CadastroForm />
     </SupplierProvider>
   );
 };
 
-export default Index;
+export default Cadastro;

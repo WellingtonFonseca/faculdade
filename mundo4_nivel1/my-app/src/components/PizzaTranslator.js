@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { Text, TextInput, View, StyleSheet } from 'react-native';
 
 const PizzaTranslator = () => {
   const [text, setText] = useState('');
+
+  // Função chamada quando o texto é alterado
+  const handleChangeText = (newText) => {
+    setText(newText);
+  };
+
+  // Função chamada ao enviar o texto
+  const handleSubmitEditing = () => {
+    console.log('Texto enviado:', text);
+  };
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Type here to translate!"
-        onChangeText={(newText) => setText(newText)}
+        onChangeText={handleChangeText}
+        onSubmitEditing={handleSubmitEditing}
+        defaultValue={text}
       />
       <Text style={styles.output}>
         {text
